@@ -3,8 +3,7 @@ def reverseWordsInString(string):
     isChar = True
     j = 0
     
-    for i in range(len(string)):
-                
+    for i in range(len(string)):       
         if (isChar and (string[i] == ' ')) or (not isChar and (string[i] != ' ')):
             words.append(string[j : i])
             isChar = not isChar
