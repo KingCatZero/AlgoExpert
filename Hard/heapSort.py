@@ -60,22 +60,6 @@ class MinHeap():
         self.siftDown()
         return x
     
-    def isValid(self):
-        for i in range(len(self.array)):
-            l = self.leftChildIndex(i)
-            r = self.rightChildIndex(i)
-            
-            if (l < len(self.array)) and (self.array[i] > self.array[l]):
-                return False
-            
-            if (r < len(self.array)) and (self.array[i] > self.array[r]):
-                return False
-        
-        return True
-    
-    def length(self):
-        return len(self.array)
-    
 def heapSort(array):
     sortedArray = []
     heap = MinHeap(array)
