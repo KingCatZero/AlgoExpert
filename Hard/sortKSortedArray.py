@@ -1,0 +1,76 @@
+class MinHeap():
+    def __init__(self):
+        self.array = []
+    
+    def parentIndex(self, i):
+        return int((i - 1) / 2)
+    
+    def leftChildIndex(self, i):
+        return (i * 2) + 1
+    
+    def rightChildIndex(self, i):
+        return (i * 2) + 2
+    
+    def siftUp(self):
+        i = len(self.array) - 1
+        
+        while i > 0:
+            p = self.parentIndex(i)
+            
+            if self.array[p] > self.array[i]:
+                self.array[p], self.array[i] = self.array[i], self.array[p]
+                i = p
+            else:
+                break
+    
+    def siftDown(self):
+        i = 0
+        
+        while i < len(self.array):
+            l = self.leftChildIndex(i)
+            r = self.rightChildIndex(i)
+            
+            if (l < len(self.array)) and (r < len(self.array)):
+                if self.array[l] <= self.array[r]:
+                    c = l
+                else:
+                    c = r
+            elif l < len(self.array):
+                c = l
+            else:
+                break
+                
+            if self.array[i] > self.array[c]:
+                self.array[c], self.array[i] = self.array[i], self.array[c]
+                i = c
+            else:
+                break
+
+    def insert(self, x):
+        self.array.append(x)
+        self.siftUp()
+    
+    def remove(self):
+        x = self.array[0]
+        self.array[0] = self.array[-1]
+        self.array.pop()
+        self.siftDown()
+        return x
+    
+    def peek(self):
+        return self.array[0]
+
+def sortKSortedArray(array, k):
+    output = []
+    minHeap = MinHeap()
+    
+    for a in array:            
+        minHeap.insert(a)
+        
+        if len(minHeap.array) == k + 1:
+            output.append(minHeap.remove())
+        
+    while len(minHeap.array) > 0:
+        output.append(minHeap.remove())
+    
+    return output
