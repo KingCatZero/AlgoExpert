@@ -2,9 +2,6 @@ def topologicalSort(jobs, deps):
     output = []
     X, Y = buildDependencyGraphs(jobs, deps)
     freeJobs = startingJobs(Y)
-    print(X)
-    print(Y)
-    print(freeJobs)
     
     while len(freeJobs) > 0:
         x = freeJobs.pop(0)
