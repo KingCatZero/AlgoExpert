@@ -28,8 +28,7 @@ def palindromicityMatrix(string):
     for j in range(1, len(string)):
         for i in range(j):
             if string[i] == string[j]:
-                if string[i] == string[j]:
-                    if (i == j - 1) or (output[i + 1][j - 1] == 1):
-                        output[i][j] = 1
+                if (i == j - 1) or (output[i + 1][j - 1] == 1):
+                    output[i][j] = 1
     
     return output
