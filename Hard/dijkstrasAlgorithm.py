@@ -65,7 +65,6 @@ class MinHeap():
         return x
 
 def dijkstrasAlgorithm(start, edges):
-    distances = [0] * len(edges)
     nodes = buildNetwork(edges)
     nodes[start].distance = 0
     heap = MinHeap()
