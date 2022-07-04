@@ -4,7 +4,6 @@ class Node():
         self.col = col
         self.estimatedDistance = estimatedDistance
         self.distance = float('inf')
-        self.visited = False
         self.prev = None
 
 class MinHeap():
@@ -74,7 +73,6 @@ def aStarAlgorithm(startRow, startCol, endRow, endCol, graph):
     
     while len(heap.array) > 0:
         currentNode = heap.remove()
-        currentNode.visited = True
         
         if (currentNode.row == endRow) and (currentNode.col == endCol):
             break
@@ -82,11 +80,10 @@ def aStarAlgorithm(startRow, startCol, endRow, endCol, graph):
         for rowNbr, colNbr in availableNeighbours(graph, currentNode.row, currentNode.col):
             node = nodes[rowNbr][colNbr]
             
-            if not node.visited:
-                if node.estimatedDistance + currentNode.distance < node.distance:
-                    node.distance = node.estimatedDistance + currentNode.distance
-                    node.prev = currentNode
-                    heap.insert(node)
+            if node.estimatedDistance + currentNode.distance < node.distance:
+                node.distance = node.estimatedDistance + currentNode.distance
+                node.prev = currentNode
+                heap.insert(node)
     
     return buildPathToEnd(nodes, nodes[endRow][endCol])
 
